@@ -1,0 +1,32 @@
+{% include 'bootstrap.html' %}
+
+{% block body%}
+<div class="container" style="display: flex;width:100%;height:100%;margin-top:30px;justify-content:center;align-items:center">
+    <div >
+<form action = "{{ url_for('login') }}" method = "POST">
+    <!-- Email input -->
+    <div style="color: red;">{{message}}</div>
+    <div class="form-outline mb-4">
+      <input type="email" id="form2Example1" class="form-control" name="email"/>
+      <label class="form-label" for="form2Example1">Email address</label>
+    </div>
+  
+    <!-- Password input -->
+    <div class="form-outline mb-4">
+      <input type="password" id="form2Example2" class="form-control" name="pass"/>
+      <label class="form-label" for="form2Example2">Password</label>
+    </div>
+  
+    
+  
+    <!-- Submit button -->
+    <input type="submit" class="btn btn-primary btn-block mb-4"/>
+  
+    <!-- Register buttons -->
+    <div class="text-center">
+      <p>Not a member? <a href="/adduser">Register</a></p>
+      </div>
+  </form>
+</div>
+</div>
+{%endblock%}
