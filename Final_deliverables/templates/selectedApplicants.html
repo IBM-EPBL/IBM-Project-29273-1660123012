@@ -1,0 +1,218 @@
+<!doctype html>
+<html class="no-js" lang="zxx">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Selected Applicants List</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+   <!---- <link rel="manifest" href="site.webmanifest">-->
+   
+    <link rel="shortcut icon icon" type="image/x-icon" href="{{ url_for('static', filename='assets/img/favicon.ico') }}">
+   
+    <!-- CSS here -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/price_rangs.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/flaticon.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/slicknav.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/animate.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/magnific-popup.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/fontawesome-all.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/themify-icons.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/slick.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/nice-select.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/style.css') }}">
+</head>
+
+<body>
+    <!-- Preloader Start -->
+    <div id="preloader-active">
+        <div class="preloader d-flex align-items-center justify-content-center">
+            <div class="preloader-inner position-relative">
+                <div class="preloader-circle"></div>
+                <div class="preloader-img pere-text">
+                    <img src="{{ url_for('static',filename='assets/img/logo/logo.png')}}" alt="" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Preloader Start -->
+    <header>
+        <!-- Header Start -->
+        <div class="header-area header-transparrent">
+            <div class="headder-top header-sticky">
+                <div class="container">
+                    <div class="row justify-content-end">         
+                        <!-- Header-btn -->
+                        <div class="header-btn d-none f-right d-lg-block">   
+                            <a href="/logout" class="btn head-btn1">Logout</a>                                 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Header End -->
+    </header> 
+    <main>
+
+        <!-- Hero Area Start-->
+        <div class="slider-area ">
+            <div class="single-slider section-overly slider-height2 d-flex align-items-center" data-background="{{ url_for('static',filename='assets/img/hero/about.jpg') }}">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="hero-cap text-center">
+                                <h2>Selected Applicants</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Hero Area End -->
+        <!-- Job List Area Start -->
+        <div class="job-listing-area pt-120 pb-120">
+            <div class="container">
+                <div class="row">
+                    <!-- Right content -->
+                    <div class="col-xl-9 col-lg-9 col-md-8">
+                        <!-- Featured_job_start -->
+                        <section class="featured-job-area">
+                            <div class="container">
+                                <!-- Count of Job list Start -->
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="count-job mb-35">
+                                            <span>Total Applicants selected: {{ applicants|length }} </span>
+                                            <!-- Select job items start -->
+                                           
+                                            <!--  Select job items End-->
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Count of Job list End -->
+                                <!-- single-job-content -->
+                               
+         
+                            {% for x in range(0,applicants|length) %}     
+                                <div class="single-job-items mb-30" id="all-jobs">
+                                    <div class="job-items">
+                                        <div class="job-tittle job-tittle2">
+                                            
+                                            <h4>{{ applicants[x]['FIRSTNAME'] }}  {{ applicants[x]['LASTNAME'] }}</h4>
+                                            <ul>
+                                                <li><strong>Email ID: </strong>{{ applicants[x]['EMAILID'] }}</li>
+                                                <li><strong>Phone No: </strong>{{ applicants[x]['PHONENO'] }}</li>
+                                                <li><strong>Experience: </strong>{{ applicants[x]['WORKEXPERIENCE'] }}</li>
+                                            </ul>
+                                            <br>
+                                            <form action="/ResumeDownload" method="post">
+                                                <input type="hidden" name="uemail" value="{{ applicants[x]['EMAILID'] }}">
+                                                <input type="submit" value="Download Resume" class="genric-btn primary radius">
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div> 
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Job List Area End -->
+            <!--Pagination Start  -->
+            <div class="pagination-area pb-115 text-center">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="single-wrap d-flex justify-content-center">
+                                <nav aria-label="Page navigation example">
+                                    <ul class="pagination justify-content-start">
+                                        <li class="page-item active"><a class="page-link" href="#">01</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">02</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">03</a></li>
+                                        <li class="page-item"><a class="page-link" href="#"><span class="ti-angle-right"></span></a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Pagination End  -->
+
+    </main>
+    <footer>
+        <!-- Footer Start-->
+        <div class="footer-area footer-bg footer-padding">
+            <div class="container">
+                <div class="row d-flex justify-content-between">
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+                       <div class="single-footer-caption mb-50">
+                         <div class="single-footer-caption mb-30">
+                             <div class="footer-tittle">
+                                 <h4>About Us</h4>
+                                 <div class="footer-pera">
+                                     <p>Heaven frucvitful doesn't cover lesser dvsays appear creeping seasons so behold.</p>
+                                </div>
+                             </div>
+                         </div>
+
+                       </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+                        <div class="single-footer-caption mb-50">
+                            <div class="footer-tittle">
+                                <h4>Contact Info</h4>
+                                <ul>
+                                    <li>
+                                    <p>Address :Your address goes
+                                        here, your demo address.</p>
+                                    </li>
+                                    <li><a href="#">Phone : +8880 44338899</a></li>
+                                    <li><a href="#">Email : info@colorlib.com</a></li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JS here -->
+    <!-- All JS Custom Plugins Link Here here -->
+
+    <script src="{{ url_for('static',filename='assets/js/vendor/modernizr-3.5.0.min.js')}}"></script>
+
+    <!-- Jquery, Popper, Bootstrap -->
+    <script src="{{ url_for('static',filename='assets/js/vendor/jquery-1.12.4.min.js')}}"></script>
+    <script src="{{ url_for('static',filename='assets/js/popper.min.js')}}"></script>
+    <script src="{{ url_for('static',filename='assets/js/bootstrap.min.js')}}"></script>
+    <script src="{{ url_for('static',filename='assets/js/jquery.slicknav.min.js')}}"></script>
+    <script src="{{ url_for('static',filename='assets/js/owl.carousel.min.js')}}"></script>
+    <script src="{{ url_for('static',filename='assets/js/slick.min.js')}}"></script>
+    <!-- Jquery Slick , Owl-Carousel Range -->
+    <script src="{{ url_for('static',filename='assets/js/price_rangs.js')}}"></script>
+    <script src="{{ url_for('static',filename='assets/js/wow.min.js')}}"></script>
+    <script src="{{ url_for('static',filename='assets/js/animated.headline.js')}}"></script>
+    <!-- One Page, Animated-HeadLin -->
+    <script src="{{ url_for('static',filename='assets/js/jquery.magnific-popup.js')}}"></script>
+    <script src="{{ url_for('static',filename='assets/js/jquery.scrollUp.min.js')}}"></script>
+    <script src="{{ url_for('static',filename='assets/js/jquery.nice-select.min.js')}}"></script>
+    <script src="{{ url_for('static',filename='assets/js/jquery.sticky.js')}}"></script>
+    <script src="{{ url_for('static',filename='assets/js/contact.js')}}"></script>>
+    <script src="{{ url_for('static',filename='assets/js/jquery.validate.min.js')}}"></script>
+    <!-- contact js -->
+
+    <script src="{{ url_for('static',filename='assets/js/jquery.ajaxchimp.min.js')}}"></script>
+    <script src="{{ url_for('static',filename='assets/js/mail-script.js')}}"></script>
+
+    <script src="{{ url_for('static',filename='assets/js/plugins.js')}}"></script>
+    <script src="{{ url_for('static',filename='assets/js/main.js')}}"></script>
+    <!-- Jquery Plugins, main Jquery -->
+    
+
+</body>
+</html>
